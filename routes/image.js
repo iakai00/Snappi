@@ -8,12 +8,11 @@ const router = express.Router();
 // Get all images
 router.get("/", controller.getImagesList);
 
+// Get an image with ID
 router.get("/:id", controller.getImageWithID);
 
 // Create a post
 
-router.post("/upload", (req, res) => {
-  res.send("You can POST images here.");
-});
+router.post("/", controller.uploadDest.single("image"), controller.uploadImage);
 
 export default router;

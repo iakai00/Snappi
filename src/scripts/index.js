@@ -7,7 +7,10 @@ const app = express();
 
 dotenv.config();
 
-app.use('/image', imageRoutes);
+app.use("/image", imageRoutes);
+app.use(express.json());
+
+app.use("/image", imageRoutes);
 
 app.listen(process.env.APP_PORT, () => {
   console.log(`App running on port ${process.env.APP_PORT}`);
