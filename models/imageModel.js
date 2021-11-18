@@ -1,7 +1,6 @@
 "use strict";
 
-import { data } from "jquery";
-import pool from "../db/database";
+import pool from "../db/database.js";
 
 // Get a promise wrapped instance of that pool
 

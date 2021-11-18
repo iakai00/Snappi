@@ -1,12 +1,14 @@
 "use strict";
 
 import express from "express";
-import * as controller from "../controllers/imageController";
+import * as controller from "../controllers/imageController.js";
 
 const router = express.Router();
 
 // Get all images
-router.get("/", controller.getImagesList);
+router
+    .route('/')
+    .get(controller.getImageList);
 
 // Get an image with ID
 router.get("/:id", controller.getImageWithID);
