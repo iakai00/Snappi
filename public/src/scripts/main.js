@@ -1,28 +1,26 @@
 "use strict";
+const url = "http://localhost:3000";
 
-// Get userID from local storage
-const userId = sessionStorage.getItem("userId");
+const ul = document.querySelector("ul");
 
-// Get userID from local storage
-const userToken = sessionStorage.getItem("token");
+const getImages = async () => {
+  const response = await fetch(url + "/image/");
+  const images = await response.json();
 
-// Hide HTML element
-const hideContent = (element) => {
-  element.style.display = "none";
+  console.log("this is images:-", images);
+
+  images.map((image) => {
+    ul.innerHTML += `
+        <li>
+        <h2>${image.image_id}</h2>
+        <figure>
+            <img src="./uploads/${image.imagename}" class="resp">
+        </figure>
+        <p>Uploaded: ${image.time_stamp}</p>
+        <p>Owner: ${image.user_id}</p>
+    </li>
+        `;
+  });
 };
 
-// Display HTML element
-const showContent = (element) => {
-  element.style.display = "block";
-};
-
-// Slide-toggle logic
-const slideToggle = (target) => {
-  if (window.getComputedStyle(target).display === "none") {
-    target.style.display = "block";
-  } else {
-    target.style.display = "none";
-  }
-};
-
-
+getImages();

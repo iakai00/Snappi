@@ -5,7 +5,7 @@ import * as model from "../models/imageModel.js";
 
 const storage = multer.diskStorage({
   destination: (req, res, cd) => {
-    cb(null, "/.uploads/");
+    cb(null, "./public/uploads");
   },
   filename: (req, file, cb) => {
     const ext = file.originalname.split(".").slice(-1);
@@ -17,21 +17,17 @@ const uploadDest = multer({ storage: storage });
 
 const getImageList = async (req, res) => {
   const posts = await model.getAllImages();
-  console.log(
-    "whole details ",
-    process.env.DB_HOST,
-    process.env.DB_USER,
-    process.env.DB_NAME,
-    process.env.DB_PASS
-  );
-  console.log("this is post", posts);
   res.json(posts);
 };
 
 const uploadImage = async (req, res) => {
-  const data = [req.file.filename, req.body.userId];
-  const upload = await model.postImage(data);
-  return res.send(upload);
+  try {
+    const data = [req.file.filename, req.body.userId];
+    const upload = await model.postImage(data);
+    res.send({ status: "insert ok" });
+  } catch (err) {
+    console.log("Error uploadImage:-", err);
+  }
 };
 
 const getImageWithID = async (req, res) => {
