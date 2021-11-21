@@ -31,12 +31,12 @@ const getImageById = async (id) => {
 const postImage = async (data) => {
   try {
     const [rows] = await promisePool.execute(
-      "INSERT INTO `image` (`imagename`, `user_id`) VALUES (?,?)",
+      "INSERT INTO `image` (`imagename`, `owner_id`) VALUES (?,?)",
       data
     );
     return rows;
-  } catch (e) {
-    console.log("Error postImage: ", postImage);
+  } catch (err) {
+    console.log("Error postImage: ", err);
   }
 };
 export { getAllImages, getImageById, postImage };
