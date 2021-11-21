@@ -1,19 +1,6 @@
 "use strict";
 
-import multer from "multer";
 import * as model from "../models/imageModel.js";
-
-const storage = multer.diskStorage({
-  destination: (req, res, cd) => {
-    cb(null, "./public/uploads");
-  },
-  filename: (req, file, cb) => {
-    const ext = file.originalname.split(".").slice(-1);
-    cb(null, `${file.filename} - ${Date.now()}.${ext}`);
-  },
-});
-
-const uploadDest = multer({ storage: storage });
 
 const getImageList = async (req, res) => {
   const posts = await model.getAllImages();
@@ -36,4 +23,4 @@ const getImageWithID = async (req, res) => {
   res.json(image);
 };
 
-export { getImageList, getImageWithID, uploadDest, uploadImage };
+export { getImageList, getImageWithID, uploadImage };

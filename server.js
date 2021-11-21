@@ -4,6 +4,7 @@ import express from "express";
 import imageRoutes from "./routes/imageRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
 import commentRoutes from './routes/commentRoutes.js';
+import userRoutes from './routes/userRoutes.js';
 import pool from "./db/database.js";
 
 const app = express();
@@ -16,6 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/image', imageRoutes);
 app.use('/comment', commentRoutes);
 app.use('/auth', authRoutes);
+app.use('/user', userRoutes);
 
 
 app.listen(process.env.APP_PORT, () => {

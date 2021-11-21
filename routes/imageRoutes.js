@@ -15,6 +15,6 @@ router.get("/:id", controller.getImageWithID);
 
 // Create a post
 
-router.post("/", controller.uploadDest.single("image"), controller.uploadImage);
+router.post('/', uploadDestPost.single('image'), controller.uploadImage);
 
 export default router;
