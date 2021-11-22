@@ -2,19 +2,18 @@
 
 import express from "express";
 import * as controller from "../controllers/imageController.js";
+import { uploadDestPost } from '../utils/uploadDest.js';
 
 const router = express.Router();
 
-// Get all images
 router
-    .route('/')
-    .get(controller.getImageList);
+  .route('/')
+  .get(controller.getImagesList) // get all images
+  .post(uploadDestPost.single('image'), controller.uploadImage); // create a post
 
-// Get an image with ID
-router.get("/:id", controller.getImageWithID);
-
-// Create a post
-
-router.post('/', uploadDestPost.single('image'), controller.uploadImage);
+router
+  .route('/:id')
+  .get(controller.getImageWithID) // get a image with ID
+  .delete(controller.deletePost); // delete a post
 
 export default router;

@@ -2,9 +2,11 @@
 
 import * as model from "../models/imageModel.js";
 
-const getImageList = async (req, res) => {
+const getImagesList = async (req, res) => {
   const posts = await model.getAllImages();
-  res.json(posts);
+  // Rest in Object Destructuring to get all the properties except password
+  const postsWithoutPW = posts.map(({ password, ...post }) => post);
+  res.json(postsWithoutPW);
 };
 
 const uploadImage = async (req, res) => {
@@ -23,4 +25,14 @@ const getImageWithID = async (req, res) => {
   res.json(image);
 };
 
-export { getImageList, getImageWithID, uploadImage };
+const deletePost = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const del = await model.deleteImage(id);
+    res.json({ status: "sucessfully delete" });
+  } catch (err) {
+    console.log("Error deletePost:-", err);
+  }
+};
+
+export { getImagesList, getImageWithID, uploadImage, deletePost };
