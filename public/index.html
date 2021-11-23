@@ -12,117 +12,153 @@
     rel="stylesheet"
   />
 
+  <link href='https://fonts.googleapis.com/css?family=Sofia' rel="stylesheet" />
+
+  <!-- <header start> ===============================================================================================-->
   <header>
     <div class="header">
-        <span class="logo" >Snappi</span>   
+      <span class="logo">Snappi</span>
 
       <div class="search-container">
         <form id="search-form">
           <input type="text" placeholder="Search.." name="search" required />
-          <button type="submit" class="search-btn">Search</button>
+          <button type="button"><i class="fa fa-search"></i></button>
         </form>
       </div>
 
       <div class="signin">
-        <a id="SignInBtn" href="./html/signin.html">
-            <span id="userIcon" class="fas fa-user " aria-hidden="true"></span>
-            <span>Sign In</span>
-          </a>
+        <a id="SignInBtn" href="./auth.html">
+          <span id="userIcon" class="fas fa-user" aria-hidden="true"></span>
+          <span>Sign In</span>
+        </a>
       </div>
 
-      <!-- <form> -->
-        <form class="upload-form" enctype="multipart/form-data">
-            <label id="fileLabel" for="fileInput"> Upload </label>
-            <input
-              id="fileInput"
-              type="file"
-              name="image"
-              accept="image/*"
-              placeholder="Choose file"
-              required
-            />
-            <button type="submit">Save</button>
-          </form>
+      <!-- <upload image form> -->
 
+      <form class="upload-form" enctype="multipart/form-data">
+        <label id="fileLabel" for="fileInput"> Select </label>
+        <input
+          id="fileInput"
+          type="file"
+          name="image"
+          accept="image/*"
+          placeholder="Choose file"
+          required
+        />
+        <button type="submit">Post</button>
+      </form>
     </div>
   </header>
+  <!-- <header end> ===============================================================================================-->
 
   <main>
+    <!-- Start of profile section -->
     <div class="container">
-        <div class="profile">
-          <a id="profile-picture" aria-label="Change Profile Picture">
-            <div class="profile-image" >
-              <span class="btn-change-image">
-                <input  id="profileImg" type="file" accept="image/*" style="display:none;" />
-                <label id="label"  for="profileImg">
-                  <i class="fas fa-camera"></i>
-                  Change Image
-                </label>
-              </span>
-            </div>
-          </a>
-  
-          <div class="profile-user-settings">
-            <h1 class="profile-user-name">janedoe_</h1>
-  
-            <button class="btn profile-edit-btn">Edit Profile</button>
-  
-            <button
-            id="profile-settings-btn"
-              class="btn profile-settings-btn"
-              aria-label="profile settings"
-            >
-              <i class="fas fa-sign-out-alt" aria-hidden="true"></i>
-            </button>
+      <div class="profile">
+        <a id="profile-picture" aria-label="Change Profile Picture">
+          <div class="profile-image" >
+            <span class="btn-change-image">
+              <input  id="dpInput" type="file" accept="image/*" style="display:none;" />
+              <label id="label"  for="dpInput">
+                <i class="fas fa-camera"></i>
+                Change Image
+              </label>
+            </span>
+          </div>
+        </a>
 
-            <div id="id01" class="modal">
-                <span class="close" title="Close Modal">×</span>
-                <form class="modal-content">
-                  <div class="container"> 
-                    <h1>Logout</h1>
-                    <p>Are you sure you want to Logout?</p>
-    
-                    <div class="clearfix">
-                      <button class="cancelbtn">Cancel</button>
-                      <button class="deletebtn">Logout</button>
+        <div class="profile-user-settings">
+          <h1 class="profile-user-name">janedoe_</h1>
+
+          <button id="edit-profile" class="btn profile-edit-btn">Edit Profile</button>
+
+
+                <!-- Modal : Edit profile -->
+              <div id="edit-profile-modal" class="modal">
+                <!--Step 1:Adding HTML-->
+                <span class="close" title="Close Modal" >x</span>
+                <form id="editProfileForm" class="modal-content">
+                    <div class="container">
+                        <span><b>Username</b></span>
+                        <input id="editProfileUsername" type="text"  name="username" minlength="3" required>
+              
+                        <br></br>
+                        <span><b>Email</b></span>
+                        <input id="editProfileEmail" type="email" name="email" required>
+
+                        <br></br>
+                        <span><b>About</b></span>
+                        <textarea id="editProfileAbout" type="text" name="about" required="required"></textarea>
+
+
+                        <div class="clearfix">
+                            <button type="reset" class="cancelbtn">Cancel</button>
+                            <button type="button" class="deletebtn">Submit</button>
+                        </div>
                     </div>
-                  </div>
                 </form>
+
               </div>
+                <!-- Modal : Edit profile -->
+
+
+              
+          <button
+            id="profile-logout-btn"
+            class="btn profile-settings-btn"
+            aria-label="profile settings"
+          >
+            <i class="fas fa-sign-out-alt" aria-hidden="true"></i>
+          </button>
+
+          <!-- Start of logout dialog-->
+          <div id="id01" class="modal">
+            <span class="close" title="Close Modal">×</span>
+            <form class="modal-content">
+              <div class="container"> 
+                <h1>Logout</h1>
+                <p>Are you sure you want to Logout?</p>
+              
+                <div class="clearfix">
+                  <button class="cancelbtn">Cancel</button>
+                  <button class="deletebtn">Logout</button>
+                </div>
+              </div>
+            </form>
           </div>
-  
-         <!-- <div class="profile-stats">
-            <ul>
-              <li>posts<span class="profile-stat-count">164</span></li>
-              <li>followers <span class="profile-stat-count">188</span></li>
-              <li>following<span class="profile-stat-count">206</span></li>
-            </ul>
-          </div>
-  
-          <div class="profile-bio">
-            <p class="profile-real-name">Jane Doe</p>
-            <p class="profile-bio-only">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit📷✈️🏕️
-            </p>
-          </div> -->
+          <!-- End of logout dialog-->
+
         </div>
-        <!-- End of profile section -->
-      </div>
-      <!-- End of container -->
-  
-      <div class="container">
-        <div class="gallery"></div>
-        <!-- End of gallery -->
-  
-        <div class="loader"></div>
-      </div>
-  
-      <!-- End of container -->
 
+        <div class="profile-stats">
+          <ul>
+            <li>Posts<span id="image" class="profile-stat-count"></span></li>
+            <li>Likes <span id="like" class="profile-stat-count"></span></li>
+            <li>Comments<span id="comment" class="profile-stat-count"></span></li>
+          </ul>
+        </div>
+
+        <div class="profile-bio">
+          <p class="profile-real-name">About</p>
+          <p class="profile-bio-only">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit📷✈️🏕️
+          </p>
+        </div>
+      </div>
+      <!-- End of profile section -->
+    </div>
+    <!-- End of container -->
+
+    <div class="container">
+      <div class="gallery"></div>
+    </div>
+    <!-- End of container -->
   </main>
-  <script src="./modules/jquery/dist/jquery.min.js"></script>
 
-    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
-    <script type="text/javascript" src="./scripts/index.js"></script>
-    <script type="text/javascript" src="./scripts/profile.js"></script>  
+  <script type="module" src="./scripts/main.js"></script>
+  <script type="module" src="./scripts/search.js"></script>
+  <script type="module" src="./scripts/profile.js"></script>
+  <script type="module" src="./scripts/index.js"></script>
+
+
 </html>
