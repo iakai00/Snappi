@@ -17,22 +17,27 @@ import {
 
 const postData = `<div class="gallery-item-info">
     <ul>
+
       <li class="gallery-item-likes">
         <button id="like-button">Like</button>
         <span class="visually-hidden">Likes:</span>
         <i class="fas fa-heart" aria-hidden="true"></i> 
         <span id="likes-count"></span>
       </li>
+
       <li class="gallery-item-comments">
         <button id="comment-button">Comment</button>
         <span class="visually-hidden">Comments:</span>
         <i class="fas fa-comment" aria-hidden="true"></i> 
         <span id="comments-count"></span>
       </li>
+
       <p class="m-0"></p>
+
     </ul>
       
     </div>
+
     <div class="comment-section">
       <div id="posted-comments"></div>
       <form class="comment-form" method="POST">
@@ -40,6 +45,7 @@ const postData = `<div class="gallery-item-info">
         <button type="submit" disabled="">Post</button>
       </form>
     </div>
+
     <div class="modal">
       <span class="close" title="Close Modal">×</span>
       <form class="modal-content">
@@ -70,9 +76,12 @@ const createPostCards = (posts) => {
           ${post.username}
           <i  id="trash" class="fa fa-trash" aria-hidden="true"></i>
         </div>
+
+
         <img src="./uploads/${post.imagename}" class="gallery-image" alt="" />
         
         ${postData}
+
       </div>`
     );
 
@@ -182,6 +191,7 @@ const createPostCards = (posts) => {
               </p>
           </div>
         </div>
+
           <div class="comment-body">
             <p> ${comment.content}</p>
           </div>`;
