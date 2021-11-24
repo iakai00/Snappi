@@ -5,6 +5,8 @@ import imageRoutes from "./routes/imageRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
 import commentRoutes from './routes/commentRoutes.js';
 import userRoutes from './routes/userRoutes.js';
+import likeRoutes from './routes/likeRoutes.js';
+import helmet from 'helmet';
 import pool from "./db/database.js";
 
 const app = express();
@@ -18,6 +20,7 @@ app.use('/image', imageRoutes);
 app.use('/comment', commentRoutes);
 app.use('/auth', authRoutes);
 app.use('/user', userRoutes);
+app.use('/like', likeRoutes);
 
 
 app.listen(process.env.APP_PORT, () => {

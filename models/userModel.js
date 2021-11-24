@@ -1,8 +1,7 @@
 "use strict";
-
 import pool from "../db/database.js";
 
-//  Get a Promise wrapped instance of that pool
+// now get a Promise wrapped instance of that pool
 const promisePool = pool.promise();
 
 const getUsersList = async () => {
@@ -38,10 +37,22 @@ const getUserWithEmail = async (email) => {
   }
 };
 
+const getUserWithUsername = async (username) => {
+  try {
+    const [rows] = await promisePool.execute(
+      "SELECT * FROM `user` WHERE `username` =?",
+      [username]
+    ); // Values should pass as array
+    return rows;
+  } catch (e) {
+    consol.log("Error getUserWithUsername:-", e);
+  }
+};
+
 const uploadUserData = async (params) => {
   try {
     const [rows] = await promisePool.execute(
-      "INSERT INTO `user` (`username`, `email`, `password`) VALUES (?, ?, ?);",
+      "INSERT IGNORE INTO `user` (`username`, `email`, `password`) VALUES (?, ?, ?);",
       params // Arg are passed as an array
     );
     return rows;
@@ -50,17 +61,49 @@ const uploadUserData = async (params) => {
   }
 };
 
-const postProfile = async(data)=>{
-    try{
-      const [rows] = await promisePool.execute(
-        'UPDATE `user` SET `dp`=? WHERE `user_id`=?',
-        data
-      );
-      return rows;
-    }
-    catch (err){
-      console.log('Error postProfile:-',err)
-    }
+const postProfile = async (data) => {
+  try {
+    const [rows] = await promisePool.execute(
+      "UPDATE `user` SET `dp`=? WHERE `user_id`=?",
+      data
+    );
+    return rows;
+  } catch (err) {
+    console.log("Error postProfile:-", err);
   }
-  
-  export { getUsersList, getUserWithId, getUserWithEmail, uploadUserData, postProfile };
+};
+
+const updateUserData = async (data) => {
+  try {
+    const [rows] = await promisePool.execute(
+      "UPDATE `user` SET `username` = ?, `email` = ? , `bio`= ? WHERE `user_id`=?",
+      data
+    );
+    return rows;
+  } catch (err) {
+    console.log("Error update userdata:-", err);
+  }
+};
+
+const userSearch = async (query) => {
+  try {
+    const [rows] = await promisePool.execute(
+      `SELECT * FROM image INNER JOIN user ON image.owner_id = user.user_id WHERE username LIKE '%${query}%' ORDER BY creation_date DESC;`
+      // `SELECT * FROM user WHERE username LIKE '%${query}%' ;`
+    );
+    return rows;
+  } catch (err) {
+    console.log("Error while search:-", err);
+  }
+};
+
+export {
+  getUsersList,
+  getUserWithId,
+  getUserWithEmail,
+  uploadUserData,
+  postProfile,
+  getUserWithUsername,
+  updateUserData,
+  userSearch,
+};

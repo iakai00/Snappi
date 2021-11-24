@@ -5,7 +5,7 @@ import bcrypt from "bcryptjs";
 import { uploadUserData } from "../models/userModel.js";
 
 const authenticate = (req, res) => {
-  // Authentication handled as Promise
+  // Authentication handled as a Promise
   return new Promise((resolve, reject) => {
     passport.authenticate("local", { session: false }, (err, user, info) => {
       try {
@@ -16,6 +16,7 @@ const authenticate = (req, res) => {
           if (err) {
             reject(err);
           }
+          // generate a signed Json web token with the contents of user object and return it in the response
           const token = jwt.sign(user, process.env.SECRET_KEY);
           resolve({ user, token });
         });
@@ -47,6 +48,7 @@ const userRegister = async (req, res, next) => {
   );
 
   const params = [req.body.username, req.body.email, hash];
+
   if (await uploadUserData(params)) {
     // This will call next middleware on the list
     next();
@@ -58,7 +60,7 @@ const userRegister = async (req, res, next) => {
 const userLogout = async (req, res) => {
   // Invoking logout() will remove the req.user property and clear the login session (if any).
   req.logout();
-  res.json({ message: 'logout' });
+  res.json({ message: "logout" });
 };
 
 export { userLogin, userRegister, userLogout };

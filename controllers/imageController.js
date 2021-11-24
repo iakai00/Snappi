@@ -4,9 +4,21 @@ import * as model from "../models/imageModel.js";
 
 const getImagesList = async (req, res) => {
   const posts = await model.getAllImages();
-  // Rest in Object Destructuring to get all the properties except password
+  // Rest in Object Destructuring to get all the properties of image with image owner except owner password
   const postsWithoutPW = posts.map(({ password, ...post }) => post);
   res.json(postsWithoutPW);
+};
+
+const getImageWithID = async (req, res) => {
+  const id = req.params.id;
+  const image = await model.getImageById(id);
+  res.json(image);
+};
+
+const getTotalPostsByUser = async (req, res) => {
+  const id = req.params.userId;
+  const [posts] = await model.getTotalPostsByUser(id);
+  res.json(posts);
 };
 
 const uploadImage = async (req, res) => {
@@ -19,12 +31,6 @@ const uploadImage = async (req, res) => {
   }
 };
 
-const getImageWithID = async (req, res) => {
-  const id = req.params.id;
-  const image = await model.getImageById(id);
-  res.json(image);
-};
-
 const deletePost = async (req, res) => {
   try {
     const id = req.params.id;
@@ -35,4 +41,10 @@ const deletePost = async (req, res) => {
   }
 };
 
-export { getImagesList, getImageWithID, uploadImage, deletePost };
+export {
+  getImagesList,
+  getImageWithID,
+  uploadImage,
+  deletePost,
+  getTotalPostsByUser,
+};
