@@ -1,41 +1,41 @@
-'use strict';
+"use strict";
 /**
  * This file holds the key functions which will be served to the other files
  */
 
 // Get userID from local storage
-const userId = sessionStorage.getItem('userId');
+const userId = sessionStorage.getItem("userId");
 
 // Get userID from local storage
-const userToken = sessionStorage.getItem('token');
+const userToken = sessionStorage.getItem("token");
 
 // Hide HTML element
 const hideContent = (element) => {
-  element.style.display = 'none';
+  element.style.display = "none";
 };
 
 // Display HTML element
 const showContent = (element) => {
-  element.style.display = 'block';
+  element.style.display = "block";
 };
 
 // Slide-toggle logic
 const slideToggle = (target) => {
-  if (window.getComputedStyle(target).display === 'none') {
-    target.style.display = 'block';
+  if (window.getComputedStyle(target).display === "none") {
+    target.style.display = "block";
   } else {
-    target.style.display = 'none';
+    target.style.display = "none";
   }
 };
 
 // fetch profile stats from back end
 const fetchProfileStatCount = async (userID, fetchRoute) => {
   const fetchOptions = {
-    method: 'GET',
+    method: "GET",
     headers: {
-      Authorization: 'Bearer ' + userToken,
+      Authorization: "Bearer " + userToken,
     },
-    redirect: 'follow',
+    redirect: "follow",
   };
 
   try {
@@ -77,34 +77,34 @@ const myCustomFetch = async (url, fetchOptions) => {
 
 // Hide modal along with remove errors
 const hideModal = (modal) => {
-  const errors = modal.getElementsByClassName('error');
+  const errors = modal.getElementsByClassName("error");
   if (errors) {
     Array.from(errors).map((element) => {
-      element.classList.remove('error');
+      element.classList.remove("error");
     });
   }
   hideContent(modal);
 };
 
 const modalClickHandler = async (modal) => {
-  const closeBtn = modal.getElementsByClassName('close')[0];
+  const closeBtn = modal.getElementsByClassName("close")[0];
 
-  const cancelBtn = modal.getElementsByClassName('cancelbtn')[0];
+  const cancelBtn = modal.getElementsByClassName("cancelbtn")[0];
 
   hideModal(modal);
 
-  closeBtn.addEventListener('click', (event) => {
+  closeBtn.addEventListener("click", (event) => {
     event.preventDefault();
     hideModal(modal);
   });
 
-  cancelBtn.addEventListener('click', (event) => {
+  cancelBtn.addEventListener("click", (event) => {
     event.preventDefault();
     hideModal(modal);
   });
 
   // When the user clicks anywhere outside of the modal, close it
-  document.addEventListener('click', (event) => {
+  document.addEventListener("click", (event) => {
     if (event.target == modal) {
       hideContent(modal);
     }
@@ -112,7 +112,7 @@ const modalClickHandler = async (modal) => {
 };
 
 const timeDiff = (time) => {
-  if (typeof time === 'string') {
+  if (typeof time === "string") {
     time = Date.parse(time); // Change string to type date
   }
   const difference = Date.now() - time;
@@ -131,15 +131,15 @@ const timeAgo = (time) => {
   const difference = timeDiff(time);
 
   if (difference < 5 * 1000) {
-    return 'just now';
+    return "just now";
   } else if (difference < 60 * 1000) {
-    return 'moments ago';
+    return "moments ago";
   }
 
   //it has minutes
   if ((difference % 1000) * 3600 > 0) {
     if (Math.floor((difference / 1000 / 60) % 60) > 0) {
-      let s = Math.floor((difference / 1000 / 60) % 60) == 1 ? '' : 's';
+      let s = Math.floor((difference / 1000 / 60) % 60) == 1 ? "" : "s";
       result = `${Math.floor((difference / 1000 / 60) % 60)} minute${s} `;
     }
   }
@@ -147,7 +147,7 @@ const timeAgo = (time) => {
   //it has hours
   if ((difference % 1000) * 3600 * 60 > 0) {
     if (Math.floor((difference / 1000 / 60 / 60) % 24) > 0) {
-      let s = Math.floor((difference / 1000 / 60 / 60) % 24) == 1 ? '' : 's';
+      let s = Math.floor((difference / 1000 / 60 / 60) % 24) == 1 ? "" : "s";
       result = `${Math.floor((difference / 1000 / 60 / 60) % 24)} hour${s}`;
     }
   }
@@ -155,12 +155,12 @@ const timeAgo = (time) => {
   //it has days
   if ((difference % 1000) * 3600 * 60 * 24 > 0) {
     if (Math.floor(difference / 1000 / 60 / 60 / 24) > 0) {
-      let s = Math.floor(difference / 1000 / 60 / 60 / 24) == 1 ? '' : 's';
+      let s = Math.floor(difference / 1000 / 60 / 60 / 24) == 1 ? "" : "s";
       result = `${Math.floor(difference / 1000 / 60 / 60 / 24)} day${s}`;
     }
   }
 
-  return result + ' ago';
+  return result + " ago";
 };
 
 // Update comment's time

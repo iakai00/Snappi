@@ -1,9 +1,7 @@
 "use strict";
-
 import pool from "../db/database.js";
 
-// Get a promise wrapped instance of that pool
-
+// now get a Promise wrapped instance of that pool
 const promisePool = pool.promise();
 
 const getAllImages = async () => {

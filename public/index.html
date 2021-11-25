@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
   <meta charset="UTF-8" />
-  <title>Snappi</title>
+  <title><img src="./images/logoCircular.png" alt="IMG" /></title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <link rel="stylesheet" href="./css/home.css" />
   <!--===============================================================================================-->
   <link rel="stylesheet" type="text/css" href="./css/header.css" />
 
   <link
-    href="../node_modules/@fortawesome/fontawesome-free/css/all.min.css"
+    href="./modules/@fortawesome/fontawesome-free/css/all.min.css"
     rel="stylesheet"
   />
 
@@ -22,7 +22,7 @@
       <div class="search-container">
         <form id="search-form">
           <input type="text" placeholder="Search.." name="search" required />
-          <button type="button"><i class="fa fa-search"></i></button>
+          <button type="button"><i class="fa fa-search fa-sm"></i></button>
         </form>
       </div>
 
@@ -36,7 +36,7 @@
       <!-- <upload image form> -->
 
       <form class="upload-form" enctype="multipart/form-data">
-        <label id="fileLabel" for="fileInput"> Select </label>
+        <label id="fileLabel" for="fileInput"> <i class="fa fa-plus fa-2x" aria-hidden="true" title="Upload Pictures"></i></label>
         <input
           id="fileInput"
           type="file"
@@ -45,13 +45,17 @@
           placeholder="Choose file"
           required
         />
-        <button type="submit">Post</button>
+        <button type="submit"><i class="fas fa-paper-plane fa-lg" title="Post"></i></button>
       </form>
     </div>
   </header>
   <!-- <header end> ===============================================================================================-->
 
   <main>
+    <div class="container">
+        <div class="gallery"></div>
+    </div>
+      <!-- End of container -->
     <!-- Start of profile section -->
     <div class="container">
       <div class="profile">
@@ -141,16 +145,11 @@
         <div class="profile-bio">
           <p class="profile-real-name">About</p>
           <p class="profile-bio-only">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit📷✈️🏕️
+             This is spartaaa 📷✈️🏕️
           </p>
         </div>
       </div>
       <!-- End of profile section -->
-    </div>
-    <!-- End of container -->
-
-    <div class="container">
-      <div class="gallery"></div>
     </div>
     <!-- End of container -->
   </main>

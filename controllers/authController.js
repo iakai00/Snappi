@@ -1,7 +1,7 @@
 "use strict";
 import jwt from "jsonwebtoken";
-import passport from "../utils/pass.js";
 import bcrypt from "bcryptjs";
+import passport from "../utils/pass.js";
 import { uploadUserData } from "../models/userModel.js";
 
 const authenticate = (req, res) => {
