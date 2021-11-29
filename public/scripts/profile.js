@@ -43,7 +43,7 @@ const populateProfile = async (id) => {
     if (user.dp) {
       displayPicture.style.backgroundImage = `url(./profiles/${user.dp})`;
     } else {
-      displayPicture.style.backgroundImage = `url(./images/logo.png)`;
+      displayPicture.style.backgroundImage = `url(./images/logoCircular.png)`;
     }
 
     // Check if user about exits

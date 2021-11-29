@@ -360,7 +360,7 @@ document
     const result = await myCustomFetch("./image/", fetchOptions);
 
     if (result.status) {
-      document.getElementById("fileLabel").innerText = "Uploaded";
+      document.getElementById("fileLabel").innerHTML = `<i class="fa fa-plus fa-2x" aria-hidden="true" title="Upload Pictures"></i>`;
       document.querySelector(".upload-form").reset();
       populateImages();
       fetchProfileStatCount(userId, "image");
